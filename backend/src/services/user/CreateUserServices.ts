@@ -1,10 +1,10 @@
 import { hash } from "bcryptjs";
-import { IUser } from "../../interface/IUser";
+import { ICreateUser } from "../../interface/IUser";
 import prismaClient from "../../prisma";
 
 
 class CreateUserService{
-  async createUser({name,email,password}:IUser){
+  async createUser({name,email,password}:ICreateUser){
 
     if(!email) throw new Error('Email Incorrect!')
 
