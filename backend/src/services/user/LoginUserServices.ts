@@ -1,0 +1,5 @@
+class LoginUserService{
+  async execute(){
+    
+  }
+}
