@@ -12,7 +12,8 @@ import { CreateHaircutService } from "../../services/haircut/CreateHaircutServic
       price,
       user_id
     });
-    return res.status(201).json(addHaircut);
+    return res.status(201).json(addHaircut);  
+    
   }
  }
 
