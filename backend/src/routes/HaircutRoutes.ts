@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { checkSubscriptionController } from "../controllers/haircut/checkSubscriptionController";
+import { CountHaircutController } from "../controllers/haircut/CountHaircutController";
 import { CreateHaircutController } from "../controllers/haircut/CreateHaircutController";
 import { ListHaircutController } from "../controllers/haircut/ListHaircutController";
 import { UpdateHaircutController } from "../controllers/haircut/UpdateHaircutController";
@@ -15,5 +16,7 @@ haircutRouter.get('/haircuts',tokenAutentication,new ListHaircutController().lis
 haircutRouter.put('/haircut',tokenAutentication,new UpdateHaircutController().update);
 
 haircutRouter.get('/haircut/check',tokenAutentication,new checkSubscriptionController().checkSubscription);
+
+haircutRouter.get('/haircut/count',tokenAutentication,new CountHaircutController().countHaircut);
 
 export default haircutRouter;
