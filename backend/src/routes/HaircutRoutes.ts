@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { checkSubscriptionController } from "../controllers/haircut/checkSubscriptionController";
 import { CreateHaircutController } from "../controllers/haircut/CreateHaircutController";
 import { ListHaircutController } from "../controllers/haircut/ListHaircutController";
 import { UpdateHaircutController } from "../controllers/haircut/UpdateHaircutController";
@@ -12,5 +13,7 @@ haircutRouter.post('/haircut',tokenAutentication,new CreateHaircutController().c
 haircutRouter.get('/haircuts',tokenAutentication,new ListHaircutController().list);
 
 haircutRouter.put('/haircut',tokenAutentication,new UpdateHaircutController().update);
+
+haircutRouter.get('/haircut/check',tokenAutentication,new checkSubscriptionController().checkSubscription);
 
 export default haircutRouter;
