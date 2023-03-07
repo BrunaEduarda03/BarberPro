@@ -4,6 +4,7 @@ import 'express-async-errors';
 import cors from 'cors';
 import userRouter from './routes/UserRoutes';
 import haircutRouter from './routes/HaircutRoutes';
+import servicesRouter from './routes/ServicesRoutes';
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors()); // liberar para quaisquer requisições
 
 app.use(userRouter);
 app.use(haircutRouter);
+app.use(servicesRouter);
 
 app.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
   if(err instanceof Error){

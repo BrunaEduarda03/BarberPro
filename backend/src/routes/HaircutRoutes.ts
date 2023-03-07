@@ -22,4 +22,5 @@ haircutRouter.get('/haircut/count',tokenAutentication,new CountHaircutController
 
 haircutRouter.get('/haircut/details',tokenAutentication,new DetailsHaircutController().details);
 
+
 export default haircutRouter;
