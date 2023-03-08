@@ -2,7 +2,7 @@ import { Button, Center, Flex, Input, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import logo from '../assets/logo.svg'
+import logo from '../../public/logo.svg'
 
 
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
             size='lg'
             variant='filled'
             mb={3}
-            mt={14}
+            mt={12}
             />
           <Input 
             placeholder="*********"
@@ -47,9 +47,9 @@ export default function Home() {
           >Acessar
           </Button>
           <Center>
-          <Link href='/SignUp'>
-            <Text color='button.default' mt={5}cursor='pointer'>
-              Quero cadastrar minha barbearia.<strong>Clique Aqui!</strong>
+          <Link href='/signup'>
+            <Text color='button.default' mt={3}cursor='pointer'>
+              Ainda não possui uma conta?<strong> Clique Aqui!</strong>
             </Text>
           </Link>
           </Center>
