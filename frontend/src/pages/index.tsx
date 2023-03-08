@@ -1,5 +1,8 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Button, Center, Flex, Input, Text } from '@chakra-ui/react'
 import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
+import logo from '../assets/logo.svg'
 
 
 export default function Home() {
@@ -8,8 +11,49 @@ export default function Home() {
       <Head> 
         <title>BarberPro - Seu Sistema Completo</title>
       </Head>
-      <Flex>
-        <Text>Home</Text>
+      <Flex background='barber.900' height='100vh' alignItems='center' justifyContent='center' >
+        <Flex width={640} direction='column' p={14} border='none' rounded={8}>
+        <Center>
+        <Image 
+          alt='barberpro' 
+          src={logo}
+          quality={100} 
+          objectFit='fill'
+          width={300}
+        />
+         </Center>
+          <Input 
+            placeholder="Digite seu E-mail"
+            type="email"
+            background='barber.400'
+            size='lg'
+            variant='filled'
+            mb={3}
+            mt={14}
+            />
+          <Input 
+            placeholder="*********"
+            type="password"
+            background='barber.400'
+            size='lg'
+            mb={6}
+            variant='filled'
+            />
+          <Button
+            background='button.cta' 
+            color='gray.900' 
+            size='lg'
+            _hover={{bg:'#F6AD55'}}
+          >Acessar
+          </Button>
+          <Center>
+          <Link href='/SignUp'>
+            <Text color='button.default' mt={5}cursor='pointer'>
+              Quero cadastrar minha barbearia.<strong>Clique Aqui!</strong>
+            </Text>
+          </Link>
+          </Center>
+        </Flex>
       </Flex>
     </>
   )
