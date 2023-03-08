@@ -1,6 +1,7 @@
 <div  align="center" >
-<h1>Barber Pro
-<img alt="BarberPro" src="https://user-images.githubusercontent.com/73250271/220725088-b2bb57f7-73b2-45d3-81f1-48b73b1d68d6.jpg" width="50px" align="center" />
+
+<h1>
+<img alt="BarberPro" src="https://user-images.githubusercontent.com/73250271/223866986-c7bcb91b-1aa6-4a95-acfe-0c8ca6709d61.svg" width="250px" align="center" />
 </h1> 
 
 </div>
