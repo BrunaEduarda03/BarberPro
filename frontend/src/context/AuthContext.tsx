@@ -1,8 +1,8 @@
 import { api } from "@/services/apiClient";
 import  Router from "next/router";
-import { destroyCookie, setCookie } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import path from "path";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface AuthContextData {
   user:UserProps;
@@ -53,6 +53,20 @@ export const AuthContext = createContext({} as AuthContextData);
 export function AuthProvider({children}: AuthProviderProps){
   const [user,setUser] = useState<UserProps>();
   const isAuthenticated = !!user;
+
+  useEffect(()=>{
+    const {'@barber.token':token} = parseCookies();
+    if(token){
+      api.get('/details')
+        .then(response=>{
+          const{id,email,name,endereco,subscriptions} = response.data;
+          setUser({id,email,name,endereco,subscriptions});
+        })
+        .catch(()=>{
+          signOut();
+        })
+    }
+  },[])
 
   async function signIn({email,password}:SigInProps){
     try{
