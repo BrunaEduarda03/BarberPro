@@ -1,19 +1,20 @@
+import { AuthContext } from "@/context/AuthContext";
 import { Button, Center, Flex, Input, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from '../../../public/logo.svg'
 
 export default function Signup(){
   const [name,setName] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
+  const {signUp} = useContext(AuthContext);
 
   async function handleRegister(){
-    console.log(name);
-    console.log(email);
-    console.log(password);
+    if(name === '' && email === '' && password === '') return;
+    await signUp({name,email,password});
      
   }
   return (
