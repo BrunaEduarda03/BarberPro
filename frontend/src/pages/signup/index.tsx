@@ -2,9 +2,20 @@ import { Button, Center, Flex, Input, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import logo from '../../../public/logo.svg'
 
 export default function Signup(){
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+
+  async function handleRegister(){
+    console.log(name);
+    console.log(email);
+    console.log(password);
+     
+  }
   return (
     <>
       <Head>
@@ -25,6 +36,9 @@ export default function Signup(){
           variant='filled'
           mb={3}
           mt={10}
+          value={name}
+          color='button.default'
+          onChange={(e)=>setName(e.target.value)}
         />
         <Input 
           type='text'
@@ -33,16 +47,27 @@ export default function Signup(){
           background='barber.400'
           variant='filled'
           mb={3}
+          value={email}
+          color='button.default'
+          onChange={(e)=>setEmail(e.target.value)}
         />
         <Input 
-          type='text'
+          type='password'
           placeholder="***********"
           size='lg'
           background='barber.400'
           variant='filled'
           mb={6}
+          value={password}
+          color='button.default'
+          onChange={(e)=>setPassword(e.target.value)}
         />
-        <Button background='button.cta' mb={3} _hover={{bg:'#F6AD55'}}>
+        <Button 
+        background='button.cta' 
+        mb={3} 
+        _hover={{bg:'#F6AD55'}}
+        onClick={handleRegister}
+        >
           Cadastrar
         </Button>
         <Center>

@@ -1,11 +1,23 @@
+import { AuthContext } from '@/context/AuthContext'
 import { Button, Center, Flex, Input, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useContext, useState } from 'react'
 import logo from '../../public/logo.svg'
 
 
 export default function Home() {
+
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+  const {signIn} = useContext(AuthContext);
+
+  async function handleLogin(){
+    await signIn({email,password});
+     
+  }
+
   return (
     <>
       <Head> 
@@ -30,6 +42,9 @@ export default function Home() {
             variant='filled'
             mb={3}
             mt={12}
+            value={email}
+            color='button.default'
+            onChange={(e)=>setEmail(e.target.value)}
             />
           <Input 
             placeholder="*********"
@@ -38,12 +53,16 @@ export default function Home() {
             size='lg'
             mb={6}
             variant='filled'
+            value={password}
+            color='button.default'
+            onChange={(e)=>setPassword(e.target.value)}
             />
           <Button
             background='button.cta' 
             color='gray.900' 
             size='lg'
             _hover={{bg:'#F6AD55'}}
+            onClick={handleLogin}
           >Acessar
           </Button>
           <Center>
