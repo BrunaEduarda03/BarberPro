@@ -1,9 +1,13 @@
+import  Router from "next/router";
+import { destroyCookie } from "nookies";
+import path from "path";
 import { createContext, ReactNode, useState } from "react";
 
 interface AuthContextData {
   user:UserProps;
   isAuthenticated:boolean;
   signIn:(credentials:SigInProps)=>Promise<void>;
+  signOut:()=>void;
 }
 
 interface UserProps {
@@ -27,6 +31,16 @@ interface SigInProps{
   password:string;
 }
 
+export function signOut(){
+  try{
+    destroyCookie(undefined,'@pizzaria.token');
+    Router.push('/');
+  }catch{
+    console.log('erro ao deslogar');
+    
+  }
+}
+
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({children}: AuthProviderProps){
@@ -36,13 +50,10 @@ export function AuthProvider({children}: AuthProviderProps){
   async function signIn({email,password}:SigInProps){
     console.log(email);
     console.log(password);
-    
-    
-    
   }
 
   return(
-    <AuthContext.Provider value={{user,isAuthenticated,signIn}}>
+    <AuthContext.Provider value={{user,isAuthenticated,signIn,signOut}}>
       {children}
     </AuthContext.Provider>
   )
