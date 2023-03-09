@@ -1,4 +1,5 @@
 import { AuthContext } from "@/context/AuthContext";
+import { canSSRGuest } from "@/utils/canSSRGuest";
 import { Button, Center, Flex, Input, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
@@ -81,3 +82,9 @@ export default function Signup(){
     </>
   )
 }
+
+export const getServerSideProps = canSSRGuest(async(ctx)=>{
+  return {
+    props:{}
+  }
+})
