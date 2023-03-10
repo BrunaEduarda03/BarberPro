@@ -5,6 +5,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useContext, useState } from 'react'
+import { toast } from 'react-toastify'
 import logo from '../../public/logo.svg'
 
 export default function Home() {
@@ -14,9 +15,12 @@ export default function Home() {
   const {signIn} = useContext(AuthContext);
 
   async function handleLogin(){
-    if(email === '' && password === '') return;
+    if(email === '' && password === '') {
+      toast.error('Preencha todos os campos!');
+      return;
+    }
     await signIn({email,password});
-     
+     toast.success('Bem-vindo de volta!')
   }
 
   return (
