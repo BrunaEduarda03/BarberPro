@@ -172,7 +172,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps ) => {
       />
   
       <Flex flexDirection="row">
-        <Text ml={8} fontSize="2xl" fontFamily="monospace" fontWeight="bold" color='#FFF'>
+        <Text ml={8} fontSize="2xl" fontFamily="monospace" fontWeight="bold" color="button.default">
           Barber
         </Text>
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" color="button.cta">

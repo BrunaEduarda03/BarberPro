@@ -9,6 +9,7 @@ interface AuthContextData {
   isAuthenticated:boolean;
   signIn:(credentials:SigInProps)=>Promise<void>;
   signUp:(credentials:SigUpProps)=>Promise<void>;
+  logOut:()=>Promise<void>;
 }
 
 interface UserProps {
@@ -40,7 +41,7 @@ interface SigUpProps{
 
 export function signOut(){
   try{
-    destroyCookie(undefined,'@pizzaria.token');
+    destroyCookie(undefined,'@barber.token');
     Router.push('/');
   }catch{
     console.log('erro ao deslogar');
@@ -101,12 +102,24 @@ export function AuthProvider({children}: AuthProviderProps){
       
     }
   }
+
+  async function logOut(){
+    try{
+      destroyCookie(undefined,'@barber.token',{path:'/'});
+      Router.push('/');
+      setUser(null);
+    }catch(err){
+      console.log("ERRO AO SAIR", err);
+      
+    }
+  }
   return(
     <AuthContext.Provider value={{
       user,
       isAuthenticated,
       signIn,
-      signUp
+      signUp,
+      logOut
     
     }}>
       {children}
