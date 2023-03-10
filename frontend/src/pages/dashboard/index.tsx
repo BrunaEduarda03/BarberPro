@@ -10,7 +10,7 @@ export default function Dashboard(){
         <title>BarberPro - Minha Barbearia</title>
       </Head>
       <Sidebar>
-        <Text>Dashboard</Text>
+        <Text color='#FFF'>Dashboard</Text>
       </Sidebar>
     </>
   )
