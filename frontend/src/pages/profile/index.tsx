@@ -5,6 +5,7 @@ import { canSSRAuth } from "@/utils/canSSRAuth";
 import { Box, Button, Flex, Heading, Input, Link, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 interface UserProps{
   id: string;
@@ -22,6 +23,25 @@ export default function Profile({user,premium}:ProfileProps){
   const {logOut} = useContext(AuthContext);
   const [name,setName] = useState(user && user?.name);
   const [endereco,setEndereco] = useState(user?.endereco ?user?.endereco : '');
+
+  async function handleUpdateUser(){
+    try{
+      if(name === ''){
+        toast.warn('preencha o campo');
+        return;
+      }
+      const apiClient = setupAPIClient();
+      await apiClient.put('users',{
+        name,
+        endereco
+      });
+      toast.success('dados alterados com sucesso');
+
+    }catch(err){
+      console.log('erro ao atualizar',err);
+      toast.error('erro ao atualizar');
+    }
+  }
 
 
   async function handleLogOut(){
@@ -42,7 +62,7 @@ export default function Profile({user,premium}:ProfileProps){
             </Heading>
           </Flex>
 
-          <Flex background='barber.400' width='100%' maxW='700px' pt={8} pb={8} direction='column'>
+          <Flex background='barber.400' width='100%' maxW='6xl' pt={8} pb={8} direction='column'>
             
             <Flex direction='column' ml={10}  width='90%'>
               <Text 
@@ -101,11 +121,13 @@ export default function Profile({user,premium}:ProfileProps){
                 <Text 
                   color={premium?'#ffb13e' :'#4dffb4' }
                   fontSize='lg'
+                  fontWeight='bold'
                   >
                     {premium ? 'Plano Premium':'Plano Grátis'}
                 </Text>
                 <Link href="/planos" >
                   <Box 
+                    fontFamily='heading'
                     fontSize='lg'
                     color='button.default' 
                     rounded={4} 
@@ -124,6 +146,7 @@ export default function Profile({user,premium}:ProfileProps){
                 mb={4}
                 size='lg'
                 _hover={{bg:'#ffb13e'}}
+                onClick={handleUpdateUser}
               >
                 Salvar
               </Button>
