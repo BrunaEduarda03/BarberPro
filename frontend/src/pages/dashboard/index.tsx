@@ -1,4 +1,6 @@
+import { Sidebar } from "@/components/siderbar";
 import { canSSRAuth } from "@/utils/canSSRAuth";
+import { Text } from "@chakra-ui/react";
 import Head from "next/head";
 
 export default function Dashboard(){
@@ -7,7 +9,9 @@ export default function Dashboard(){
       <Head>
         <title>BarberPro - Minha Barbearia</title>
       </Head>
-      <div>dashboard</div>
+      <Sidebar>
+        <Text>Dashboard</Text>
+      </Sidebar>
     </>
   )
 }
