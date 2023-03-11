@@ -4,7 +4,7 @@ import { canSSRAuth } from "@/utils/canSSRAuth";
 import { Button, Flex, Heading, Stack, Switch, Text, useMediaQuery } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {IoMdPricetag} from 'react-icons/io'
 
 interface HaircutsItem{
@@ -21,6 +21,32 @@ interface HaircutsProps{
 export default function Haircuts({haircuts}:HaircutsProps){
   const [isMobile] = useMediaQuery("(max-width: 620px)");
   const [list,setList] = useState<HaircutsItem[]>(haircuts || []);
+  const [haircutDisabled,setHaircutDisabled] = useState('enabled');
+
+  async function handleChangeSwich(e:ChangeEvent<HTMLInputElement>){
+    const apiClient = setupAPIClient();
+    if(e.target.value === 'disabled'){
+      setHaircutDisabled('enabled');
+      const response = await apiClient.get('/haircuts',
+    {
+      params:{
+        status: true,
+      }
+    })
+    setList(response.data);
+      
+    }
+    else{
+      setHaircutDisabled('disabled');
+      const response = await apiClient.get('/haircuts',
+    {
+      params:{
+        status: false,
+      }
+    })
+    setList(response.data);
+    }
+  }
   return (
     <>
       <Head>
@@ -67,7 +93,13 @@ export default function Haircuts({haircuts}:HaircutsProps){
             mt={isMobile?-28:10}
             >
               <Text color='button.default'>ATIVOS</Text>
-              <Switch size='lg' colorScheme='green'/>
+              <Switch 
+                size='lg' 
+                colorScheme='green'
+                value={haircutDisabled}
+                onChange={(e:ChangeEvent<HTMLInputElement>)=>handleChangeSwich(e)}
+                isChecked={haircutDisabled === 'enabled' ? true : false}
+                />
           </Stack>
         </Flex>
 
