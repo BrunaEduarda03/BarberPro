@@ -39,6 +39,7 @@ export default function Haircuts(){
               mr={6}
               mt={10}
               ml={isMobile?5:0}
+              _hover={{bg:'transparent'}}
               >Cadastrar Novo
             </Button>
           </Link>
