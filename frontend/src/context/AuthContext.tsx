@@ -1,7 +1,6 @@
 import { api } from "@/services/apiClient";
 import  Router from "next/router";
 import { destroyCookie, parseCookies, setCookie } from "nookies";
-import path from "path";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface AuthContextData {

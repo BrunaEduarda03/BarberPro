@@ -1,10 +1,14 @@
 import { Sidebar } from "@/components/siderbar";
 import { setupAPIClient } from "@/services/api";
 import { canSSRAuth } from "@/utils/canSSRAuth";
-import { Button, Flex, Heading, Input, Stack, Switch, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Input, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
+import Router from "next/router";
+
+import { useState } from "react";
 import {  IoIosArrowBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 interface NewHaircutProps{
   subscription: boolean;
@@ -12,6 +16,28 @@ interface NewHaircutProps{
 }
 
 export default function New({subscription,count}:NewHaircutProps){
+  const [name,setName] = useState('');
+  const [price,setPrice] = useState('');
+
+  async function handleRegister(){
+    try{
+      if(name === '' || price === ''){
+        toast.warn('Preencha todos os campos!');
+        return;
+      }
+      const apiClient = setupAPIClient();
+      const response = await apiClient.post('/haircut',{
+        name:name,
+        price:Number(price),
+      });
+      
+      toast.success('Corte cadastrado com sucesso!');
+      Router.push('/haircuts')
+    }catch(err){
+      toast.error('Erro ao cadastrar!')
+      console.log('error ao cadastrar',err);
+    }
+  }
   return (
     <>
     <Head>
@@ -69,6 +95,9 @@ export default function New({subscription,count}:NewHaircutProps){
             placeholder="Nome do Corte"
             mb={5}
             disabled={!subscription && count >= 3}
+            value={name}
+            onChange={(e)=>setName(e.target.value)}
+            color='button.default'
           />
           <Input 
             type='text'
@@ -77,6 +106,9 @@ export default function New({subscription,count}:NewHaircutProps){
             mb={5}
             placeholder="Preço exemplo:45.90"
             disabled={!subscription && count >= 3}
+            value={price}
+            onChange={(e)=>setPrice(e.target.value)}
+            color='button.default'
           />
           <Button 
             w='100%' 
@@ -85,6 +117,7 @@ export default function New({subscription,count}:NewHaircutProps){
             _hover={{bg:'#ffb13e'}}
             disabled={!subscription && count >= 3}
             cursor={!subscription && count >= 3?'not-allowed':'pointer'}
+            onClick={handleRegister}
             
             >Cadastrar
           </Button>
