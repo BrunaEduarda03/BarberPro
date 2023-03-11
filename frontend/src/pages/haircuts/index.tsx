@@ -89,13 +89,12 @@ export default function Haircuts(){
             mb={5}
             ml={5}
             justifyContent="space-between"
-            
           >
-              <Flex direction='row' justifyContent='center' alignItems="center" >
+            <Flex direction='row' justifyContent='center' alignItems="center" >
               <IoMdPricetag size={28} color="#fba931" />
               <Text  ml={5} color='#fff'>Corte Completo</Text>
-              </Flex>
-              <Text fontWeight="bold" ml={5} color='#fff'>R$ 69,99</Text>
+            </Flex>
+            <Text fontWeight="bold" ml={5} color='#fff'>R$ 69,99</Text>
               
             </Flex>
             </Link>
