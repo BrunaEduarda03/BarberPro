@@ -99,6 +99,7 @@ export default function Haircuts({haircuts}:HaircutsProps){
                 value={haircutDisabled}
                 onChange={(e:ChangeEvent<HTMLInputElement>)=>handleChangeSwich(e)}
                 isChecked={haircutDisabled === 'enabled' ? true : false}
+                
                 />
           </Stack>
         </Flex>
