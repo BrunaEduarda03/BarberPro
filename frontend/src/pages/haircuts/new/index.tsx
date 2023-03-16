@@ -82,7 +82,7 @@ export default function New({subscription,count}:NewHaircutProps){
           </Heading>
         </Flex>
 
-        <Flex  w='95%' bg='barber.400' alignItems='center' justifyContent='center' ml={7}  >
+        <Flex  width='95%' maxW='6xl' bg='barber.400' alignItems='center' justifyContent='center' ml={7}  >
           <Flex  w='85%' direction='column' alignItems='center' mb={10}>
           <Text mt={10} color='#FFF' fontSize='4xl' fontWeight='bold' mb={7}>
             Cadastrar Modelo
