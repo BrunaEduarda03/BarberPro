@@ -1,37 +1,44 @@
+import { ModalInfo } from "@/components/modal";
 import { Sidebar } from "@/components/siderbar";
 import { setupAPIClient } from "@/services/api";
 import { canSSRAuth } from "@/utils/canSSRAuth";
-import { Button, Flex, Heading, Link as ChakraLink, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Link as ChakraLink, Text, useDisclosure } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import { IoMdPerson } from "react-icons/io";
 
-interface HaircutItems{
-  id:string;
-  name:string;
-  price: number | string;
-  status:boolean;
-  user_id: string;
-}
-
-interface HaircutsList{
+export interface ScheduleList{
   id:string;
   customer:string;
-  haircuts:HaircutItems;
+  haircuts:{
+    id:string;
+    name:string;
+    price: number | string;
+    status:boolean;
+    user_id: string;
+  }
 }
 
-interface HaircutProps{
-  haircuts:HaircutsList[];
+interface ScheduleProps{
+  schedule:ScheduleList[];
 }
 
-export default function Dashboard({haircuts}:HaircutProps){
+export default function Dashboard({schedule}:ScheduleProps){
+  const {isOpen,onOpen,onClose} = useDisclosure();
+  const [service,setService] = useState<ScheduleList>();
+
+  function handleOpenModal(item:ScheduleList){
+    setService(item);   //console.log(item);
+    onOpen();   
+  }
   return (
     <>
       <Head>
         <title>BarberPro - Minha Barbearia</title>
       </Head>
       <Sidebar>
-        <Flex ml={7} mt={10} mr={5} align='flex-start' justifyContent='flex-start' direction='column'>
+        <Flex ml={7} mt={10} mr={5} align="flex-start" justify="flex-start" direction='column'>
           <Flex 
             mt={10}  
             direction='row' 
@@ -63,36 +70,51 @@ export default function Dashboard({haircuts}:HaircutProps){
             </Link>
           </Flex>
 
-            {haircuts?.map((item)=>(
-            <ChakraLink w='100%' key={item?.id}>
+            {schedule?.map((item)=>(
+            <ChakraLink 
+             w='100%'
+             key={item?.id}
+             m={0}
+             p={0}
+             mt={1}
+             bg="transparent" 
+             style={{ textDecoration: 'none' }}
+             onClick={()=>handleOpenModal(item)}  
+             >
             <Flex 
               bg='barber.400' 
               w='100%' 
-              direction='column' 
+              direction='row' 
               align='center' 
-              justifyContent='center'
+              justifyContent='space-between'
               p={4}
               mb={5}
             >
-             
-                 <Flex   w='100%' direction='row' align='center' justify='space-between'>
-                 <Flex direction='row'  align='center'>
-                   <IoMdPerson size={25} color='#FFF' />
-                   <Text ml={4} color='#FFF' fontWeight='bold'>
+                 <Flex direction='row'  align='center' justify='center'>
+                   <IoMdPerson size={25} color='#F1F1F1' />
+                   <Text ml={4} color='#FFF' fontWeight='bold' noOfLines={1}>
                      {item?.customer}
                    </Text>
                  </Flex>
                  <Text ml={5} color='#FFF' fontWeight='bold'>{item?.haircuts?.name}</Text>
                  <Text ml={5} color='#FFF' fontWeight='bold'>R$ {item?.haircuts?.price}</Text>
-               </Flex>
-             
               
+            
             </Flex>
             </ChakraLink>
             ))}
 
           </Flex>
       </Sidebar>
+
+      <ModalInfo
+        isOpen={isOpen}
+        onClose={onClose}
+        onOpen={onOpen}
+        data={service}
+        finishService={async()=>{}}
+              
+      />
     </>
   )
 }
@@ -105,7 +127,7 @@ export const getServerSideProps = canSSRAuth(async (ctx)=>{
     
     return{
       props:{
-        haircuts:response.data
+        schedule:response.data
       }
     }
 
