@@ -7,6 +7,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import { IoMdPerson } from "react-icons/io";
+import { toast } from "react-toastify";
 
 export interface ScheduleList{
   id:string;
@@ -25,12 +26,33 @@ interface ScheduleProps{
 }
 
 export default function Dashboard({schedule}:ScheduleProps){
+  const [list,setList] = useState(schedule);
   const {isOpen,onOpen,onClose} = useDisclosure();
   const [service,setService] = useState<ScheduleList>();
 
   function handleOpenModal(item:ScheduleList){
     setService(item);   //console.log(item);
     onOpen();   
+  }
+  async function handleFinish(id:string){
+    try{
+      const apiClient = setupAPIClient();
+      await apiClient.delete('/schedule',{
+        params:{
+          schedule_id:id
+        }
+      })
+      onClose();
+      toast.success('Finalizado serviço!');
+      const filterItem = list.filter((item)=>item?.id !== id);
+      setList(filterItem);
+
+    }catch(err){
+      console.log(err);
+      toast.error('Erro ao finalizar o serviço!');
+      
+    }
+    
   }
   return (
     <>
@@ -70,7 +92,7 @@ export default function Dashboard({schedule}:ScheduleProps){
             </Link>
           </Flex>
 
-            {schedule?.map((item)=>(
+            {list?.map((item)=>(
             <ChakraLink 
              w='100%'
              key={item?.id}
@@ -112,7 +134,7 @@ export default function Dashboard({schedule}:ScheduleProps){
         onClose={onClose}
         onOpen={onOpen}
         data={service}
-        finishService={async()=>{}}
+        finishService={async()=>handleFinish(service.id)}
               
       />
     </>
