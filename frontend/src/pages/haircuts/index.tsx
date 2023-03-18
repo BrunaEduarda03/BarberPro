@@ -80,7 +80,7 @@ export default function Haircuts({haircuts}:HaircutsProps){
               mr={6}
               mt={10}
               ml={isMobile?5:0}
-              _hover={{bg:'transparent'}}
+              _hover={{bg:'gray.700'}}
               >Cadastrar Novo
             </Button>
           </Link>
@@ -116,7 +116,8 @@ export default function Haircuts({haircuts}:HaircutsProps){
               rounded="4"
               mb={5}
               ml={5}
-              justifyContent="space-between" 
+              justifyContent="space-between"
+              _hover={{bg:'gray.700'}} 
             >
               <Flex direction='row' justifyContent='center' alignItems="center" >
               <IoMdPricetag size={28} color="#fba931" />

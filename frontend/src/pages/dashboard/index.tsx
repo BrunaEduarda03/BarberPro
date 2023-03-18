@@ -85,7 +85,7 @@ export default function Dashboard({schedule}:ScheduleProps){
                 color='#FFF' 
                 p={4}
                 rounded={6}
-                _hover={{bg:'transparent'}}
+                _hover={{bg:'gray.700'}}
               >
                 Registrar
               </Button>
@@ -111,6 +111,7 @@ export default function Dashboard({schedule}:ScheduleProps){
               justifyContent='space-between'
               p={4}
               mb={5}
+              _hover={{bg:'gray.700'}}
             >
                  <Flex direction='row'  align='center' justify='center'>
                    <IoMdPerson size={25} color='#F1F1F1' />

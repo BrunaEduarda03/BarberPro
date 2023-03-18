@@ -104,9 +104,9 @@ export default function NewSchedule({haircuts}:HaircutProps){
                  onChange={(e)=>setName(e.target.value)}
               />
               
-              <Select color='#595454fb' bg="barber.900" mb={3} size="lg" w="85%" onChange={ (e) => handleChangeSelect(e.target.value) }>
+              <Select color='#908c8cfa' bg="barber.900" mb={3} size="lg" w="85%" onChange={ (e) => handleChangeSelect(e.target.value) }>
               {haircuts?.map( item => (
-                <option key={item?.id} value={item?.id}>{item?.name}</option>
+                <option style={{backgroundColor:'#1B1C29', color:'#FFF'}} key={item?.id} value={item?.id}>{item?.name}</option>
               ))}
             </Select>
               
