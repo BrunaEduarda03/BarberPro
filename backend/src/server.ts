@@ -5,6 +5,7 @@ import cors from 'cors';
 import userRouter from './routes/UserRoutes';
 import haircutRouter from './routes/HaircutRoutes';
 import servicesRouter from './routes/ServicesRoutes';
+import subscribeRouter from './routes/Subscriptions.Routes';
 
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors()); // liberar para quaisquer requisições
 app.use(userRouter);
 app.use(haircutRouter);
 app.use(servicesRouter);
+app.use(subscribeRouter);
 
 app.use((err:Error, req:Request, res:Response, next:NextFunction)=>{
   if(err instanceof Error){
