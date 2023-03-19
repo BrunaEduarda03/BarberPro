@@ -23,7 +23,7 @@ interface ModalInfoProps{
 
 export function ModalInfo({isOpen,onOpen,onClose,data,finishService}:ModalInfoProps){
   return(
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
       <ModalContent bg='barber.400' >
         <ModalHeader color='#f1f1f1'>Próximo</ModalHeader>

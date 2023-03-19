@@ -49,10 +49,8 @@ export default function Dashboard({schedule}:ScheduleProps){
 
     }catch(err){
       console.log(err);
-      toast.error('Erro ao finalizar o serviço!');
-      
-    }
-    
+      toast.error('Erro ao finalizar o serviço!');      
+    }   
   }
   return (
     <>
@@ -94,11 +92,9 @@ export default function Dashboard({schedule}:ScheduleProps){
 
             {list?.map((item)=>(
             <ChakraLink 
-             w='100%'
+             w='100%' mt={1}
              key={item?.id}
-             m={0}
-             p={0}
-             mt={1}
+             m={0} p={0}
              bg="transparent" 
              style={{ textDecoration: 'none' }}
              onClick={()=>handleOpenModal(item)}  
@@ -113,16 +109,19 @@ export default function Dashboard({schedule}:ScheduleProps){
               mb={5}
               _hover={{bg:'gray.700'}}
             >
-                 <Flex direction='row'  align='center' justify='center'>
-                   <IoMdPerson size={25} color='#F1F1F1' />
-                   <Text ml={4} color='#FFF' fontWeight='bold' noOfLines={1}>
-                     {item?.customer}
-                   </Text>
-                 </Flex>
-                 <Text ml={5} color='#FFF' fontWeight='bold'>{item?.haircuts?.name}</Text>
-                 <Text ml={5} color='#FFF' fontWeight='bold'>R$ {item?.haircuts?.price}</Text>
-              
-            
+              <Flex direction='row'  align='center' justify='center'>
+                <IoMdPerson size={25} color='#F1F1F1' />
+                <Text ml={4} color='#FFF' fontWeight='bold' noOfLines={1}>
+                  {item?.customer}
+                </Text>
+              </Flex>
+                <Text  ml={5} color='#FFF' fontWeight='bold'>
+                  {item?.haircuts?.name}
+                </Text>
+                <Text ml={5} color='#FFF' fontWeight='bold'>R$ 
+                  {item?.haircuts?.price}
+                </Text>
+                 
             </Flex>
             </ChakraLink>
             ))}
