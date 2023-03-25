@@ -9,6 +9,7 @@ import {
 import { Sidebar } from '../../components/siderbar';
 import { canSSRAuth } from '@/utils/canSSRAuth';
 import { setupAPIClient } from '@/services/api';
+import { getStripeJS } from '@/services/stripe-js';
 
 interface PlanProps{
   premium: boolean;
@@ -17,6 +18,19 @@ interface PlanProps{
 export default function Planos({premium}:PlanProps){
   const [isMobile] = useMediaQuery('(max-width: 500px)')
   // console.log(premium);
+
+  async function handleSubscribe(){
+    if (premium) return;
+    try{
+      const apiLient = setupAPIClient();
+      const response = await apiLient.post('/subscribe');
+      const {sessionId} = response.data;
+      const stripe = await getStripeJS();
+      await stripe.redirectToCheckout({sessionId: sessionId});
+    }catch(err){
+      console.log(err);
+    }
+  }
   
   return(
     <>
@@ -87,6 +101,7 @@ export default function Planos({premium}:PlanProps){
                     color="white"
                     _hover={{bg:'#313131b4'}}
                     onClick={() => {}}
+                    cursor='not-allowed'
                     >
                     VOCÊ JÁ É PREMIUM
                   </Button>
@@ -108,7 +123,7 @@ export default function Planos({premium}:PlanProps){
               m={2}
               color="white"
               _hover={{bg:'#ffb13e'}}
-              onClick={() => {}}
+              onClick={() => handleSubscribe()}
             >
               VIRAR PREMIUM
             </Button>
@@ -130,7 +145,7 @@ export const getServerSideProps = canSSRAuth(async(ctx)=>{
     
     return {
       props:{
-        premium:response.data?.subscriptions?.status === 'active' ? false:true,
+        premium:response.data?.subscriptions?.status === 'active' ? true:false
       }
     }
 
