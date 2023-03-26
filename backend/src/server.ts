@@ -10,7 +10,13 @@ import subscribeRouter from './routes/Subscriptions.Routes';
 
 const app = express();
 
-app.use(express.json());
+app.use((req,res,next)=>{
+  if(req.originalUrl === '/webhooks'){
+    next();
+  }else{
+    express.json()(req,res,next);
+  }
+});
 app.use(cors()); // liberar para quaisquer requisições
 
 app.use(userRouter);

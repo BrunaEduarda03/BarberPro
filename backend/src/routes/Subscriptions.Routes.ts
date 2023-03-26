@@ -1,4 +1,4 @@
-import { Router } from "express";
+import express,{ Router } from "express";
 import { CreatePortalController } from "../controllers/subscriptions/CreatePortalController";
 import { SubscribeController } from "../controllers/subscriptions/SubscribeController";
 import { WebhooksController } from "../controllers/subscriptions/WebhooksController";
@@ -8,7 +8,7 @@ const subscribeRouter = Router();
 
 subscribeRouter.post('/subscribe',tokenAutentication,new SubscribeController().handle);
 
-subscribeRouter.post('/webhooks',new WebhooksController().handle);
+subscribeRouter.post('/webhooks',express.raw({type:'application/json'}),new WebhooksController().handle);
 
 subscribeRouter.post('/create-portal',tokenAutentication,new CreatePortalController().handle);
 
