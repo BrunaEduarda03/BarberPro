@@ -42,7 +42,20 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
    
 ## 💻 Figma
 
+### Login/Cadastro de usuários
+![Captura de tela de 2023-03-27 09-02-21](https://user-images.githubusercontent.com/73250271/227936321-11f57ece-7f20-449a-998a-c742078a08e5.png)
 
+### Cadastro de Serviços
+![Captura de tela de 2023-03-27 09-04-20](https://user-images.githubusercontent.com/73250271/227936765-cf092282-6b74-48a1-98c4-d9e3563bd8b5.png)
+
+### Modelos - Cadastro de Cortes
+![3](https://user-images.githubusercontent.com/73250271/227938092-5b622310-694c-4a7b-8c1b-79c3edaa3b23.png)
+
+### Configurações de Perfil
+![Captura de tela de 2023-03-27 09-12-40](https://user-images.githubusercontent.com/73250271/227938653-db8712e2-e403-47fd-9923-87fdaf140183.png)
+
+### Configurações de Planos
+![Captura de tela de 2023-03-27 09-14-12](https://user-images.githubusercontent.com/73250271/227940371-2d4262f6-6598-47d1-8b3d-7acc779791a0.png)
    
 ## 💻 Preview
 
