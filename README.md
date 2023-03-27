@@ -8,7 +8,7 @@
 
 ## :man_technologist: Sobre a aplicação
 
-A aplicação tem como objetivo a criação de um sistema para uma barbearia obtendo assim uma melhor organização e otimização dos atendimentos,além de proporcionar serviços de pacotes garantindo promoções para os clientes
+A aplicação tem como objetivo a criação de um sistema para uma barbearia para adquirir uma melhor organização e otimização dos atendimentos,além de proporcionar serviços de planos garantindo promoções para os clientes e proteção de pagamentos com infra-estrutura técnica, de prevenção de fraude bancária via stripe. 
 
 ## 🚀 Tecnologias 
 Aplicação completa para Barbearia desenvolvida em 2 camadas(Back-end/Front-end).
@@ -39,6 +39,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   - React-toastify
   - Docker
 
+- **Serviço de Pagamentos**
+  - Stripe
+
    
 ## 💻 Figma
 
@@ -68,7 +71,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 **#Clonar este repositório**
 
 ```
-git clone git@github.com:BrunaEduarda03/pizzaria-express.git
+git clone git@github.com:BrunaEduarda03/BarberPro.git
 ```
 
 
@@ -93,7 +96,7 @@ yarn run test:coverage
 
 ### ‍💻 Rodando sem Docker
 
-⚠️ **Atenção**: Você precisa ter o node instalado em sua máquina para rodar o projeto.
+⚠️ **Atenção**: Você precisa ter o node v16 ou superior instalado em sua máquina para rodar o projeto.
 
 ### __Back-end__
 Na pasta backend, renomeie o arquivo _.env.local-example_ para _.env.local_<br/>
@@ -103,7 +106,7 @@ Informe a palavra secreta da API na variável __JWT_SECRET__<br/>
 # Instale as dependências
 $ yarn install
 
-# Para iniciar a aplicação na porta 3333
+# Para iniciar a aplicação na porta 3332
 $ yarn dev
 ```
 ### __Front-end__
